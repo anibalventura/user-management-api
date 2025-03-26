@@ -1,4 +1,4 @@
-package com.anibalventura.user_management_api.jwt;
+package com.anibalventura.user_management_api.security;
 
 import com.anibalventura.user_management_api.utils.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;

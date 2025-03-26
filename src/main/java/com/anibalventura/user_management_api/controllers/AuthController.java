@@ -1,9 +1,9 @@
-package com.anibalventura.user_management_api.controller;
+package com.anibalventura.user_management_api.controllers;
 
-import com.anibalventura.user_management_api.dto.LoginDTO;
-import com.anibalventura.user_management_api.dto.RegisterDTO;
-import com.anibalventura.user_management_api.model.User;
-import com.anibalventura.user_management_api.service.UserService;
+import com.anibalventura.user_management_api.dtos.LoginDTO;
+import com.anibalventura.user_management_api.dtos.RegisterDTO;
+import com.anibalventura.user_management_api.models.User;
+import com.anibalventura.user_management_api.services.UserService;
 import com.anibalventura.user_management_api.utils.JwtUtil;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

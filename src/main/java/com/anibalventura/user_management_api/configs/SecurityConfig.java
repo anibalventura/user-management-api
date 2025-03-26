@@ -1,4 +1,4 @@
-package com.anibalventura.user_management_api.config;
+package com.anibalventura.user_management_api.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

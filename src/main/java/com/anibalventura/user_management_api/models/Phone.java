@@ -1,4 +1,4 @@
-package com.anibalventura.user_management_api.model;
+package com.anibalventura.user_management_api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

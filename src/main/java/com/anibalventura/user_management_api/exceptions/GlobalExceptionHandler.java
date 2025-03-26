@@ -1,4 +1,4 @@
-package com.anibalventura.user_management_api.exception;
+package com.anibalventura.user_management_api.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.anibalventura.user_management_api.dto;
+package com.anibalventura.user_management_api.dtos;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

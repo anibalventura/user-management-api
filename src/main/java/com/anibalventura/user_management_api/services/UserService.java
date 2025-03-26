@@ -1,10 +1,10 @@
-package com.anibalventura.user_management_api.service;
+package com.anibalventura.user_management_api.services;
 
-import com.anibalventura.user_management_api.dto.LoginDTO;
-import com.anibalventura.user_management_api.dto.RegisterDTO;
-import com.anibalventura.user_management_api.model.User;
-import com.anibalventura.user_management_api.model.Phone;
-import com.anibalventura.user_management_api.repository.UserRepository;
+import com.anibalventura.user_management_api.dtos.LoginDTO;
+import com.anibalventura.user_management_api.dtos.RegisterDTO;
+import com.anibalventura.user_management_api.models.User;
+import com.anibalventura.user_management_api.models.Phone;
+import com.anibalventura.user_management_api.repositories.UserRepository;
 import com.anibalventura.user_management_api.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

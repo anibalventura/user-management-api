@@ -1,4 +1,4 @@
-package com.anibalventura.user_management_api.model;
+package com.anibalventura.user_management_api.models;
 
 import jakarta.persistence.*;
 import lombok.*;
