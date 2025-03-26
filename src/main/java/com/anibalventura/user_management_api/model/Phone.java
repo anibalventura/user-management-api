@@ -1,5 +1,6 @@
 package com.anibalventura.user_management_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,5 +22,6 @@ public class Phone {
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)
+  @JsonIgnore
   private User user;
 }

@@ -18,7 +18,7 @@ public class UserDTO {
   @Email(message = "Formato de correo inválido")
   private String email;
 
-  @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "La contraseña debe tener al menos 8 caracteres, una letra y un número")
+  @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "The password must be at least 8 characters long, contain at least one letter and one number")
   private String password;
 
   private List<PhoneDTO> phones;
