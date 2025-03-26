@@ -3,7 +3,7 @@ package com.anibalventura.user_management_api.controllers;
 import com.anibalventura.user_management_api.dtos.LoginDTO;
 import com.anibalventura.user_management_api.dtos.RegisterDTO;
 import com.anibalventura.user_management_api.models.User;
-import com.anibalventura.user_management_api.services.UserService;
+import com.anibalventura.user_management_api.services.AuthService;
 import com.anibalventura.user_management_api.utils.JwtUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -23,7 +23,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 @Tag(name = "Authentication", description = "Endpoints for user authentication")
 public class AuthController {
-    private final UserService userService;
+    private final AuthService authService;
     private final JwtUtil jwtUtil;
 
     @PostMapping("/register")
@@ -58,7 +58,7 @@ public class AuthController {
             })
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterDTO registerDTO) {
         try {
-            User user = userService.registerUser(registerDTO);
+            User user = authService.registerUser(registerDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("mensaje", e.getMessage()));
@@ -77,7 +77,7 @@ public class AuthController {
             })
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDTO) {
         try {
-            User user = userService.loginUser(loginDTO);
+            User user = authService.loginUser(loginDTO);
             String token = jwtUtil.generateToken(user.getEmail());
             return ResponseEntity.ok().body(Collections.singletonMap("token", token));
         } catch (IllegalArgumentException e) {
