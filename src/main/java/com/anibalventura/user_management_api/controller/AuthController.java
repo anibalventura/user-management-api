@@ -26,18 +26,18 @@ public class AuthController {
             User user = userService.registerUser(registerDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(user);
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"mensaje\": \"" + e.getMessage() + "\"}");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Collections.singletonMap("mensaje", e.getMessage()));
         }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDTO) {
         try {
             User user = userService.authenticateUser(loginDTO);
             String token = jwtUtil.generateToken(user.getEmail());
             return ResponseEntity.ok().body(Collections.singletonMap("token", token));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("{\"mensaje\": \"" + e.getMessage() + "\"}");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Collections.singletonMap("mensaje", e.getMessage()));
         }
     }
 }

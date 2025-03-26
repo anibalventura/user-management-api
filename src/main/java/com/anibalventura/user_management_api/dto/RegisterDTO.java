@@ -17,9 +17,10 @@ public class RegisterDTO {
 
   @NotBlank(message = "El correo es obligatorio")
   @Email(message = "Formato de correo inválido")
+  @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = "El correo debe tener un formato válido")
   private String email;
 
-  @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "The password must be at least 8 characters long, contain at least one letter and one number")
+  @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$", message = "La contraseña debe contener una longitud mínima de 8 caracteres, contener al menos 1 letra, un número y un carácter especial")
   private String password;
 
   private List<PhoneDTO> phones;
