@@ -1,5 +1,6 @@
 package com.anibalventura.user_management_api.service;
 
+import com.anibalventura.user_management_api.dto.LoginDTO;
 import com.anibalventura.user_management_api.dto.RegisterDTO;
 import com.anibalventura.user_management_api.model.User;
 import com.anibalventura.user_management_api.model.Phone;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,6 +47,22 @@ public class UserService {
     String token = jwtUtil.generateToken(user.getEmail());
 
     user.setToken(token);
+    return user;
+  }
+
+  public User authenticateUser(LoginDTO loginDTO) {
+    Optional<User> optionalUser = userRepository.findByEmail(loginDTO.getEmail());
+
+    if (optionalUser.isEmpty()) {
+      throw new IllegalArgumentException("Credenciales incorrectas");
+    }
+
+    User user = optionalUser.get();
+
+    if (!passwordEncoder.matches(loginDTO.getPassword(), user.getPassword())) {
+      throw new IllegalArgumentException("Credenciales incorrectas");
+    }
+
     return user;
   }
 }

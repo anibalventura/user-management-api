@@ -15,6 +15,7 @@ public class RegisterDTO {
   @NotBlank(message = "El nombre es obligatorio")
   private String name;
 
+  @NotBlank(message = "El correo es obligatorio")
   @Email(message = "Formato de correo inválido")
   private String email;
 
