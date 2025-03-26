@@ -73,7 +73,7 @@ public class AuthController {
                                     examples = @ExampleObject(value = "{\"token\": \"jwt-token\"}"))),
                     @ApiResponse(responseCode = "403", description = "Invalid credentials",
                             content = @Content(mediaType = "application/json",
-                                    examples = @ExampleObject(value = "{\"mensaje\": \"Invalid credentials\"}")))
+                                    examples = @ExampleObject(value = "{\"mensaje\": \"Credenciales incorrectas\"}")))
             })
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDTO) {
         try {
