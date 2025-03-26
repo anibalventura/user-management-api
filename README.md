@@ -20,11 +20,15 @@
 - Gradle
 - PostgreSQL
 
-### API Diagram
+## Diagrams
+
+### API
 
 ![API Diagram](./docs/api-diagram.png)
 
-### DB Diagram
+### Database
+
+Check [DB Script](./docs/db-script.sql)
 
 ![DB Diagram](./docs/db-diagram.png)
 
@@ -72,6 +76,8 @@
 2. **Access the Swagger UI:**
 
     Open your browser and navigate to `http://localhost:8080/swagger-ui.html` to view the API documentation and test the endpoints.
+
+    Also check the [Postman Collection](./docs/postman-collection.json)
 
 ## Endpoints
 
