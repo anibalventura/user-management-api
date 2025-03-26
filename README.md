@@ -28,7 +28,7 @@
 
 ### Database
 
-Check [DB Script](./docs/db-script.sql)
+The database is created automatically when running the project for the first time, but you can also run the [DB Script](./docs/db-script.sql) before starting.
 
 ![DB Diagram](./docs/db-diagram.png)
 
@@ -75,9 +75,7 @@ Check [DB Script](./docs/db-script.sql)
 
 2. **Access the Swagger UI:**
 
-    Open your browser and navigate to `http://localhost:8080/swagger-ui.html` to view the API documentation and test the endpoints.
-
-    Also check the [Postman Collection](./docs/postman-collection.json)
+    Open your browser and navigate to `http://localhost:8080/swagger-ui.html` to view the API documentation and test the endpoints.  Also, you can import the [Postman Collection](./docs/postman-collection.json).
 
 ## Endpoints
 
