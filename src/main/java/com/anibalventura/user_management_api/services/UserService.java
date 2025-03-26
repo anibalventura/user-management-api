@@ -1,12 +1,15 @@
 package com.anibalventura.user_management_api.services;
 
 import com.anibalventura.user_management_api.dtos.LoginDTO;
+import com.anibalventura.user_management_api.dtos.PaginatedResponseDTO;
 import com.anibalventura.user_management_api.dtos.RegisterDTO;
 import com.anibalventura.user_management_api.models.User;
 import com.anibalventura.user_management_api.models.Phone;
 import com.anibalventura.user_management_api.repositories.UserRepository;
 import com.anibalventura.user_management_api.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -76,7 +79,16 @@ public class UserService {
     return user;
   }
 
-  public List<User> getAllUsers() {
-    return userRepository.findAll();
+  public PaginatedResponseDTO<User> getAllUsers(Pageable pageable) {
+    Page<User> users = userRepository.findAll(pageable);
+
+    return new PaginatedResponseDTO<>(
+            users.getContent(),
+            users.getNumber(),
+            users.getSize(),
+            users.getTotalElements(),
+            users.getTotalPages(),
+            users.isLast()
+    );
   }
 }
