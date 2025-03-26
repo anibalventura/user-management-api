@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDTO {
+public class RegisterDTO {
   @NotBlank(message = "El nombre es obligatorio")
   private String name;
 
@@ -22,4 +22,20 @@ public class UserDTO {
   private String password;
 
   private List<PhoneDTO> phones;
+
+  @Getter
+  @Setter
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Builder
+  public static class PhoneDTO {
+    @NotBlank(message = "Número es obligatorio")
+    private String number;
+
+    @NotBlank(message = "Código de ciudad es obligatorio")
+    private String cityCode;
+
+    @NotBlank(message = "Código de país es obligatorio")
+    private String countryCode;
+  }
 }

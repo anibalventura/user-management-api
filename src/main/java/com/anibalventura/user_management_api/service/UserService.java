@@ -1,6 +1,6 @@
 package com.anibalventura.user_management_api.service;
 
-import com.anibalventura.user_management_api.dto.UserDTO;
+import com.anibalventura.user_management_api.dto.RegisterDTO;
 import com.anibalventura.user_management_api.model.User;
 import com.anibalventura.user_management_api.model.Phone;
 import com.anibalventura.user_management_api.repository.UserRepository;
@@ -18,12 +18,12 @@ public class UserService {
   private final PasswordEncoder passwordEncoder;
   private final JwtUtil jwtUtil;
 
-  public User registerUser(UserDTO userDTO) {
-    if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
+  public User registerUser(RegisterDTO registerDTO) {
+    if (userRepository.findByEmail(registerDTO.getEmail()).isPresent()) {
       throw new IllegalArgumentException("El correo ya registrado");
     }
 
-    List<Phone> phones = userDTO.getPhones().stream()
+    List<Phone> phones = registerDTO.getPhones().stream()
             .map(phoneDTO -> Phone.builder()
                     .number(phoneDTO.getNumber())
                     .cityCode(phoneDTO.getCityCode())
@@ -32,9 +32,9 @@ public class UserService {
             .collect(Collectors.toList());
 
     User user = User.builder()
-            .name(userDTO.getName())
-            .email(userDTO.getEmail())
-            .password(passwordEncoder.encode(userDTO.getPassword()))
+            .name(registerDTO.getName())
+            .email(registerDTO.getEmail())
+            .password(passwordEncoder.encode(registerDTO.getPassword()))
             .phones(phones)
             .build();
 
