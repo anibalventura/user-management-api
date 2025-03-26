@@ -9,6 +9,9 @@ import com.anibalventura.user_management_api.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,15 +45,15 @@ public class UserService {
 
     phones.forEach(phone -> phone.setUser(user));
 
+    String token = jwtUtil.generateToken(user.getEmail());
+    user.setToken(token);
+
     userRepository.save(user);
 
-    String token = jwtUtil.generateToken(user.getEmail());
-
-    user.setToken(token);
     return user;
   }
 
-  public User authenticateUser(LoginDTO loginDTO) {
+  public User loginUser(LoginDTO loginDTO) {
     Optional<User> optionalUser = userRepository.findByEmail(loginDTO.getEmail());
 
     if (optionalUser.isEmpty()) {
@@ -63,6 +66,17 @@ public class UserService {
       throw new IllegalArgumentException("Credenciales incorrectas");
     }
 
+    // Update lastLogin and token
+    user.setLastLogin(LocalDateTime.now(ZoneId.systemDefault()));
+    String token = jwtUtil.generateToken(user.getEmail());
+    user.setToken(token);
+
+    userRepository.save(user);
+
     return user;
+  }
+
+  public List<User> getAllUsers() {
+    return userRepository.findAll();
   }
 }

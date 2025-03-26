@@ -33,7 +33,7 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginDTO loginDTO) {
         try {
-            User user = userService.authenticateUser(loginDTO);
+            User user = userService.loginUser(loginDTO);
             String token = jwtUtil.generateToken(user.getEmail());
             return ResponseEntity.ok().body(Collections.singletonMap("token", token));
         } catch (IllegalArgumentException e) {
